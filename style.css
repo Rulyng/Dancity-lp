@@ -61,12 +61,13 @@ body {
   font-family: "Audiowide", cursive;
   font-style: normal;
   font-weight: 600;
-  font-size: 26px;
-  line-height: 20px;
+  font-size: 27px;
+  line-height: 23px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #ffffff;
-}
+  color: black;
+  }
+
 
 .h2 {
   font-family: "Montserrat";
@@ -90,7 +91,8 @@ body {
   max-width: 100px;
   position: fixed;
   top: 10px;
-  left: 10px;
+  right: 10px;
+  z-index: 1;
 }
 
 @media (max-width: 768px) {
@@ -99,8 +101,18 @@ body {
   }
 
   .logo-fixed {
-    display: none;
+    max-width: 70px;
+    right: 0px;
+    top: 1px;
   }
+
+/* не спрацьовує по правому краю??? */
+  /* .logo-fixed {
+  max-width: 70px;
+  right: 10px;
+  left: 0;
+} */
+  
 
   .h1 {
     font-weight: 600;
@@ -220,8 +232,17 @@ body {
   }
 }
 /* header End */
+.about__title{
+  animation-name: title;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+}
 
-/* about */
+@keyframes title{
+  0% {text-shadow: none;}
+  50% {text-shadow: 0 0 10px #ff00ff, 0 0 10px white;}
+  100% {text-shadow: none;}
+}
 
 .about__text {
   display: flex;
