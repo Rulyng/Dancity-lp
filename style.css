@@ -137,8 +137,8 @@ body {
   align-items: center;
   gap: 20px;
   position: absolute;
-  top: 10px;
-  left: 190px;
+  top: 1%;
+  left: 12%;
 }
 
 .header__menu-link {
