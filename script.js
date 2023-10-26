@@ -51,6 +51,7 @@ btn_freeles.addEventListener('click', ()=>{
   header_contact.classList.remove('visible')
 })
 
+
 // button phone
 const btnCall = document.querySelector('.btn-call');
 
@@ -58,7 +59,7 @@ btnCall.addEventListener('click', ()=>{
   modal_container.classList.add('visible-modal')
 })
 
-// telegram message
+// telegram message modal
 document.getElementById('myForm').addEventListener('submit', function (event) {
   event.preventDefault();
   
@@ -66,6 +67,63 @@ document.getElementById('myForm').addEventListener('submit', function (event) {
   const botToken = '6328452974:AAEIl5KA2WNvjhTuifCTPhdtRt59UyBVYiw';
   const chatId = '806656207';
   const formData = new FormData(event.target);
+
+
+  let input  = document.querySelectorAll('.form__input');
+
+  let message = '';
+  formData.forEach((value, key) => {
+    message += `${key}: ${value}\n`;
+  });
+
+  const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+  const data = {
+    chat_id: chatId,
+    text: message,
+  };
+
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+  
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+
+      }
+      return response.json();
+    })
+    .then((result) => {
+      console.log('Сообщение успешно отправлено в Telegram!', result);
+      // Дополнительные действия после успешной отправки
+    })
+    .catch((error) => {
+      console.error('Произошла ошибка при отправке сообщения в Telegram:', error);
+    });
+    input.forEach(item =>{
+      (item) = '';
+    })
+   
+     for (let index = 0; index < input.length; index++) {
+      const element = input[index];
+      element.value='';
+      
+     }
+});
+
+// telegram message contact
+document.getElementById('myFormCont').addEventListener('submit', function (event) {
+  event.preventDefault();
+  
+  // Замените <YOUR_BOT_TOKEN> и <YOUR_CHAT_ID> на соответствующие значения
+  const botToken = '6328452974:AAEIl5KA2WNvjhTuifCTPhdtRt59UyBVYiw';
+  const chatId = '806656207';
+  const formData = new FormData(event.target);
+
 
   let input  = document.querySelectorAll('.form__input');
 
